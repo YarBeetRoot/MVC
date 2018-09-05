@@ -1,0 +1,17 @@
+<div class="column-three-qtr">
+    <h1>News page!</h1>
+    <div class="news-list">
+        <?foreach ($this->news as $currentNews) {?>
+        <a href="news/<?= $currentNews['news_id']; ?>">
+            <div class="news item">
+                <h2><?= $currentNews['news_title']?></h2>
+                <time datetime="<?= $currentNews['news_date']?>"><?= $currentNews['news_date']?></time>
+                <div class="preview-text"><?= $currentNews['news_short_content']?></div>
+            </div>
+        </a>
+        <?}?>
+    </div>
+</div>
+<?= $this->sideBar; ?>
+
+

@@ -3,6 +3,7 @@
 class View
 {
     private $content;
+    private $sideBar;
 
     public function __set($name, $value) {
         $this->{$name} = $value;
@@ -29,6 +30,10 @@ class View
         }
 
         include 'views/layouts/' . $templateView;
+    }
+
+    public function generateSideBar($sideBarView) {
+        $this->sideBar = $this->getRenderedHTML('views/' . $sideBarView);
     }
 
     public function getRenderedHTML($path)

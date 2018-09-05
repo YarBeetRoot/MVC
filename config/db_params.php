@@ -4,5 +4,6 @@ return [
     'host' => 'localhost',
     'dbName' => 'mvc',
     'user' => 'root',
-    'password' => ''
+    'password' => 'root',
+    'charset' => 'utf8',
 ];
