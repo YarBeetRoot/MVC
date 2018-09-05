@@ -1,0 +1,8 @@
+<div class="column-one-fourth sidebar">
+    <div class="sidebar-widget categories">
+        <h3>Категории</h3>
+        <?foreach ($this->categories as $category) :?>
+        <a href="/news/<?= $category['cat_code']; ?>"><?= $category['cat_name']; ?></a>
+        <? endforeach; ?>
+    </div>
+</div>
