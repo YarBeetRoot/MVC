@@ -54,7 +54,7 @@
 
     <div class="divider"></div>
 
-    <h3 class="section-title">Топ новостей</h3>
+    <h3 class="section-title">Топ новости</h3>
 
     <div id="portfolio-nav" class="carousel-nav">
         <div class="back"></div>
@@ -62,19 +62,25 @@
     </div>
 
     <div class="carousel">
+
         <ul id="portfolio-carousel" class="slider-container">
 
-            <?foreach ($this->topNews as $news) {?>
+
+            <!-- One Fourth -->
+            <? foreach ($this->topNews as $news) :?>
                 <li class="column-one-fourth portfolio-item branding">
                     <!-- Image -->
-                    <a href="#" class="image-link"><img alt="" src="/public/images/placeholders/preview1.jpg" class="fullwidth">
+                    <a href="/news/detail/<?= $news['news_id']?>" class="image-link"><img alt="" src="\public\images\placeholders\preview1.jpg" class="fullwidth">
                     </a>
                     <!-- Title -->
-                    <h3><a href="#"><?= $news['news_title']?></a></h3>
+                    <h3><a href="/news/detail/<?= $news['news_id']?>"><?= $news['news_title'] ?></a></h3>
                     <!-- Tags -->
-                    <div class="tags"><?= $news['cat_name']?></div>
+                    <div class="tags"><?= $news['cat_name'] ?></div>
                 </li>
-            <?}?>
+            <? endforeach; ?>
+
+            <!-- END One Fourth -->
+
 
         </ul>
     </div>
@@ -90,22 +96,28 @@
             <div class="carousel">
                 <ul id="blog-carousel" class="slider-container">
 
-                    <?foreach ($this->lastNews as $news) {?>
-                        <li class="column-one-fourth portfolio-item branding">
+
+                    <!-- One Fourth -->
+
+                    <? foreach ($this->lastNews as $news) :?>
+                        <li class="column-one-fourth">
                             <!-- Image -->
-                            <a href="blog-post.html" class="image-link">
-                                <img alt="" src="/public/images/placeholders/preview9.jpg" class="fullwidth">
+                            <a href="/news/detail/<?= $news['news_id']?>/" class="image-link"><img alt="" src="\public\images\placeholders\preview9.jpg"
+                                                                                                   class="fullwidth">
                             </a>
                             <!-- Title -->
-                            <h3><a href="blog-post.html"><?= $news['news_title']?></a></h3>
+                            <h3><a href="/news/detail/<?= $news['news_id']?>/"><?= $news['news_title'] ?></a></h3>
                             <!-- Date -->
-                            <div class="date"><?= $news['news_date']?></div>
+                            <div class="date"><? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
+                                echo $new_datetime->format('d F Y') ?></div>
                             <!-- Excerpt -->
-                            <p><?= $news['news_short_content']?></p>
+                            <p><?= $news['news_short_content'] ?></p>
                             <!-- Read More Link -->
-                            <a href="blog-post.html">Подробнее</a>
+                            <a href="/news/detail/<?= $news['news_id']?>/">Подробнее</a>
                         </li>
-                    <?}?>
+                    <? endforeach; ?>
+
+                    <!-- END One Fourth -->
 
                 </ul>
             </div>
@@ -129,45 +141,27 @@
 
                     <!-- Testimonial 1 -->
 
+                    <? foreach ($this->comments as $comment):
+                        //if (empty($comment['name'])) break;
+                    ?>
+
                     <li class="column-one-fourth">
                         <!-- Text -->
                         <div class="testimonial-text">
-                            <p>Тактика выстраивания отношений с коммерсчекими агентами стремительно развивает стратегический нестандартный
-                                подход.</p>
+                            <p><?= $comment['text']; ?></p>
                         </div>
                         <!-- Name -->
                         <div class="testimonial-name">
-                            Джон Доу
+                            <?= $comment['name']; ?>
                         </div>
                         <!-- Company URL -->
                         <div class="testimonial-link">
                             <a href="#">Посетитель</a>
                         </div>
                     </li>
+                    <? endforeach; ?>
 
                     <!-- END Testimonial 1 -->
-
-
-
-                    <!-- Testimonial 2 -->
-
-                    <li class="column-one-fourth">
-                        <!-- Text -->
-                        <div class="testimonial-text">
-                            <p>Тактика выстраивания отношений с коммерсчекими агентами стремительно развивает стратегический нестандартный
-                                подход.</p>
-                        </div>
-                        <!-- Name -->
-                        <div class="testimonial-name">
-                            Джон Доу
-                        </div>
-                        <!-- Company URL -->
-                        <div class="testimonial-link">
-                            <a href="#">Посетитель</a>
-                        </div>
-                    </li>
-
-                    <!-- END Testimonial 2 -->
 
 
                 </ul>

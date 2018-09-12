@@ -1,17 +1,82 @@
-<div class="column-three-qtr">
-    <h1>News page!</h1>
-    <div class="news-list">
-        <?foreach ($this->news as $currentNews) {?>
-        <a href="news/<?= $currentNews['news_id']; ?>">
-            <div class="news item">
-                <h2><?= $currentNews['news_title']?></h2>
-                <time datetime="<?= $currentNews['news_date']?>"><?= $currentNews['news_date']?></time>
-                <div class="preview-text"><?= $currentNews['news_short_content']?></div>
+<div class="main-content-inner content-width">
+
+
+    <!-- Main Column / Sidebar -->
+
+    <div class="column-container">
+
+
+        <!-- Main Column -->
+
+        <div class="column-three-qtr">
+
+
+            <!-- Blog Post -->
+            <? if(empty($this->news)): ?>
+                <div class="blog-post">
+                    <!-- Title -->
+                    <h1>Такой новости нет :(</h1>
+                </div>
+            <? else: ?>
+                <? foreach ($this->news as $news) : ?>
+
+                    <div class="blog-post">
+                        <!-- Title -->
+                        <h1><a href="/news/detail/<?= $news['news_id']?>/"><?= $news['news_title'] ?></a></h1>
+                        <!-- Meta -->
+                        <div class="blog-meta">
+                            <div class="meta-item">
+                                <div class="meta-title published">Дата:</div>
+                                <a href="#">
+                                    <? $new_datetime = DateTime::createFromFormat ( "Y-m-d H:i:s", $news['news_date']);
+                                    echo $new_datetime->format('d F Y') ?>
+                                </a>
+                            </div>
+                            <div class="meta-item"><div class="meta-title views">Просмотры:</div><a href="#"><?= $news['news_views']?></a></div>
+                        </div>
+                        <!-- Image -->
+                        <a href="/news/detail/<?= $news['news_id']?>/" class="media image-link"><img alt="" src="\public\images\placeholders\preview9.jpg" class="fullwidth"></a>
+                        <!-- Excerpt -->
+                        <div class="blog-content">
+                            <p><?= $news['news_short_content'] ?></p>
+                            <!-- Read More Button -->
+                            <a href="/news/detail/<?= $news['news_id']?>/" class="button accent">Читать далее</a>
+                        </div>
+                    </div>
+
+                <? endforeach; ?>
+            <? endif; ?>
+
+            <!-- END Blog Post -->
+
+            <!-- Navigation -->
+
+
+            <div class="blog-nav">
+                <a href="#" class="back">Назад</a>
+                <a href="#" class="next">Вперед</a>
             </div>
-        </a>
-        <?}?>
+
+
+            <!-- END Navigation -->
+
+
+        </div>
+
+        <!-- END Main Column -->
+
+
+
+        <!-- Sidebar -->
+
+        <?= $this->sideBar; ?>
+
+        <!-- END Sidebar -->
+
+
     </div>
+
+    <!-- END Main Column / Sidebar -->
+
+
 </div>
-<?= $this->sideBar; ?>
-
-

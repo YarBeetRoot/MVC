@@ -25,7 +25,9 @@ class Router
     public function run() {
         $uri = $this->getUri();
 
+
         foreach ($this->routes as $uriPattern => $path) {
+
             if (preg_match("~$uriPattern~", $uri)) {
                 $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
                 //news/test/
@@ -61,13 +63,11 @@ class Router
                 //var_dump($controllerObject);
                 //var_dump($actionName);
 
-                $result = call_user_func_array([$controllerObject, $actionName], $parameters);
+                call_user_func_array([$controllerObject, $actionName], $parameters);
                 //$result = $controllerObject->$actionName($parameters);
-
-                if ($result != NULL) {
-                    break;
-                }
+                exit();
             }
         }
+        include ROOT . '/404.html';
     }
 }

@@ -29,7 +29,8 @@ class View
             echo 'Установите шаблон!';die;
         }
 
-        include 'views/layouts/' . $templateView;
+        include_once 'views/layouts/' . $templateView;
+
     }
 
     public function generateSideBar($sideBarView) {
