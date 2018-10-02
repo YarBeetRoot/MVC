@@ -36,6 +36,6 @@ class ContactsController extends Controller
 
         }
 
-        $this->redirect('/contacts');
+        $this->redirect('/contacts/?success=true');
     }
 }
